@@ -38,12 +38,12 @@ git secrets --install ~/.git-templates/git-secrets
 git config --global init.templateDir ~/.git-templates/git-secrets
 
 # ZSH
-brew install zsh zsh-completions                                                                      # Install zsh and zsh completions
+brew install zsh zsh-completions                                                    # Install zsh and zsh completions
 sudo chmod -R 755 /usr/local/share/zsh
 sudo chown -R root:staff /usr/local/share/zsh
 {
   echo "if type brew &>/dev/null; then"
-  echo "  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH"
+  echo " fpath=(/opt/homebrew/share/zsh/site-functions /usr/share/zsh/site-functions /usr/share/zsh/5.9/functions)"
   echo "  autoload -Uz compinit"
   echo "  compinit"
   echo "fi"
@@ -85,10 +85,8 @@ brew install --cask font-jetbrains-mono
 # Browser
 brew install --cask google-chrome
 brew install --cask firefox
-brew install --cask microsoft-edge
 
 # Music / Video
-brew install --cask spotify
 brew install --cask vlc
 
 # Productivity
@@ -103,6 +101,7 @@ brew install --cask whatsapp
 # Dev tools
 brew install --cask ngrok                                                                               # tunnel localhost over internet.
 brew install --cask postman                                                                             # Postman makes sending API requests simple.
+brew install  derailed/k9s/k9s
 
 # IDE
 brew install --cask jetbrains-toolbox
@@ -172,6 +171,31 @@ pip3 install saws    # A supercharged AWS command line interface (CLI).
 brew install kubectx
 brew install asdf
 asdf install kubectl latest
+
+sh -c "curl -s https://raw.githubusercontent.com/maxyermayank/developer-mac-setup/master/.git_aliases >> $INSTALL_FOLDER/.git_aliases"
+{
+  echo "source $INSTALL_FOLDER/.git_aliases"
+} >>$MAC_SETUP_PROFILE
+
+sh -c "curl -s https://raw.githubusercontent.com/maxyermayank/developer-mac-setup/master/.docker_aliases >> $INSTALL_FOLDER/.docker_aliases"
+{
+  echo "source $INSTALL_FOLDER/.docker_aliases"
+} >>$MAC_SETUP_PROFILE
+
+sh -c "curl -s https://raw.githubusercontent.com/maxyermayank/developer-mac-setup/master/.kubectl_aliases >> ~/.kubectl_aliases"
+{
+  echo "source $INSTALL_FOLDER/.kubectl_aliases"
+} >>$MAC_SETUP_PROFILE
+
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting
+{
+  echo "source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+} >>$MAC_SETUP_PROFILE
+git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
+{
+  echo "source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+} >>$MAC_SETUP_PROFILE
 
 # reload profile files.
 {
