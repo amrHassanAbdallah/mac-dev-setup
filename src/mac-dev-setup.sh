@@ -113,7 +113,9 @@ mkdir ~/.nvm
 brew install nvm                                                                                     # choose your version of npm
 nvm install node                                                                                     # "node" is an alias for the latest version
 brew install yarn                                                                                    # Dependencies management for node
-
+{
+  echo "source $(brew --prefix nvm)/nvm.sh"
+} >>$MAC_SETUP_PROFILE
 
 ## Java
 curl -s "https://get.sdkman.io" | bash                                                               # sdkman is a tool to manage multiple version of java
