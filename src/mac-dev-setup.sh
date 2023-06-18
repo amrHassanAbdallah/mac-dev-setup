@@ -107,6 +107,8 @@ brew install  derailed/k9s/k9s
 brew install --cask jetbrains-toolbox
 brew install --cask visual-studio-code
 
+brew install oci-cli
+
 # Language
 ## Node / Javascript
 mkdir ~/.nvm
